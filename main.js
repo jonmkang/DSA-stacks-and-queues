@@ -1,4 +1,3 @@
-const Queue = require('./Queue');
 const Stack = require('./Stack');
 
 
@@ -83,26 +82,47 @@ function sort(stack){
     } 
     
     return tempStack; 
-  }
+}
+
+function queue(stack, toQueue){
+    if(isEmpty(stack)){
+        return null;
+    }
+
+    //create temp stack
+    const tempStack = new Stack();
+
+    //moves all items from the stack into a temporary stack
+    while(!isEmpty(stack)){
+        tempStack.push(stack.pop())
+    }
+
+    //pushes new item to the "bottom" of the stack
+    stack.push(toQueue)
+
+    //add all the items back into the stack
+    while(!isEmpty(tempStack)){
+        stack.push(tempStack.pop())
+    }
+
+    return 
+}
+
 const starTrek = new Stack();
 starTrek.push('Kirk')
 starTrek.push('Spock')
 starTrek.push('McCoy')
 starTrek.push('Scotty')
 
-// peek(starTrek)
-// console.log(isEmpty(starTrek))
-// display(starTrek)
+// const sortMe = new Stack();
+// sortMe.push(1)
+// sortMe.push(12)
+// sortMe.push(131)
+// sortMe.push(6)
+// sortMe.push(10)
 
-// starTrek.pop();
-// starTrek.pop();
-// display(starTrek)
+queue(starTrek, 'Sulu')
+display(starTrek)
 
-const sortMe = new Stack();
-sortMe.push(1)
-sortMe.push(12)
-sortMe.push(131)
-sortMe.push(6)
-sortMe.push(10)
+// console.log(sort(sortMe))
 
-console.log(sort(sortMe))
